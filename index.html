@@ -10,7 +10,7 @@
     body {
       margin: 0;
       font-family: 'Bangers', cursive;
-      background-color: #001f3f; /* Azul escuro do Homem-Aranha */
+      background-color: #001f3f; /* Azul escuro Homem-Aranha */
       color: white;
       overflow: hidden;
       height: 100vh;
@@ -22,31 +22,28 @@
       position: relative;
     }
 
-    /* Fundo com emojis */
+    /* Fundo com emojis espalhados */
     .emoji-background {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      font-size: 2em;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
-      line-height: 1;
-      color: #ff0000; /* vermelho clássico Homem-Aranha */
     }
 
     .emoji-background span {
-      margin: 0 5px;
+      position: absolute;
+      font-size: 2em;
+      opacity: 0.8;
       animation: float 6s linear infinite;
     }
 
     @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
     }
 
     /* Teias caindo */
@@ -76,7 +73,7 @@
 
     #intro, #convite {
       position: relative;
-      z-index: 2; /* texto acima do fundo e teias */
+      z-index: 2; /* texto acima do fundo */
     }
 
     .content {
@@ -84,7 +81,7 @@
       top: 20px;
       padding: 20px;
       z-index: 2;
-      background-color: rgba(0,0,0,0.4); /* contraste leve para leitura */
+      background-color: rgba(0,0,0,0.4);
       border-radius: 15px;
     }
 
@@ -143,13 +140,16 @@
   </div>
 
   <script>
-    // Cria emojis flutuando como fundo
+    // Cria emojis espalhados aleatoriamente
     const emojis = ['🕷️','🕸️','🏙️'];
     const bg = document.getElementById('emoji-bg');
-    for(let i=0;i<100;i++){
+    for(let i=0;i<150;i++){
       const span = document.createElement('span');
       span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = Math.random() * 100 + 'vh';
       span.style.animationDelay = (Math.random()*5)+'s';
+      span.style.fontSize = (Math.random()*2 + 1) + 'em'; // tamanhos variados
       bg.appendChild(span);
     }
 
