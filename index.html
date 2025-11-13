@@ -55,10 +55,12 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 200px;
-      background: url('https://i.imgur.com/MxC2F5R.png') repeat-x;
-      background-size: contain;
-      animation: moveCity 30s linear infinite;
+      height: 250px;
+      background: url('https://i.imgur.com/QFrwQbT.png') repeat-x;
+      background-size: cover;
+      animation: moveCity 25s linear infinite;
+      z-index: 1;
+      opacity: 0.8;
     }
 
     @keyframes moveCity {
@@ -68,34 +70,41 @@
 
     .spiderman {
       position: absolute;
-      width: 180px;
+      width: 160px;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
       animation: swing 4s ease-in-out infinite;
+      z-index: 2;
     }
 
     @keyframes swing {
       0% { transform: translate(-50%, 0) rotate(0deg); }
-      50% { transform: translate(-55%, 50px) rotate(10deg); }
+      50% { transform: translate(-55%, 40px) rotate(8deg); }
       100% { transform: translate(-50%, 0) rotate(0deg); }
     }
 
     .content {
       position: relative;
-      text-align: center;
-      top: 180px;
+      top: 120px;
       padding: 20px;
-      z-index: 2;
+      z-index: 3;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
+  <!-- Tela inicial -->
   <div id="intro">
     <h1>🕸️ Convite Secreto da Ana Carolina</h1>
     <button class="button" onclick="abrirConvite()">Abrir convite 🕷️</button>
   </div>
 
+  <!-- Convite -->
   <div id="convite" class="hidden">
     <img class="spiderman" src="https://i.imgur.com/vlqQ2np.png" alt="Homem-Aranha">
 
@@ -118,8 +127,8 @@
 
     <div class="city"></div>
 
-    <audio id="musica" loop>
-      <source src="https://www.televisiontunes.com/uploads/audio/Spiderman%20-%201967.mp3" type="audio/mpeg">
+    <audio id="musica" preload="auto" loop>
+      <source src="https://cdn.pixabay.com/audio/2022/08/11/audio_d51ccbf178.mp3" type="audio/mpeg">
     </audio>
   </div>
 
@@ -128,7 +137,9 @@
       document.getElementById('intro').classList.add('hidden');
       document.getElementById('convite').classList.remove('hidden');
       const musica = document.getElementById('musica');
-      musica.play();
+      musica.play().catch(() => {
+        alert("Clique novamente para iniciar o som 🎵");
+      });
     }
   </script>
 </body>
