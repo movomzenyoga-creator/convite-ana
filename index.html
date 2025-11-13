@@ -144,7 +144,7 @@
 
   <script>
     // Cria emojis espalhados aleatoriamente como confete em efeito cascata
-    const emojis = ['🕷️','🕸️','🏙️','🎉','🍕'];
+    const emojis = ['🕷️','🕸️','🏙️','🎉']; // pizza removida
     const bg = document.getElementById('emoji-bg');
     const totalEmojis = 150;
 
@@ -152,11 +152,10 @@
       const span = document.createElement('span');
       span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
       span.style.left = Math.random() * 100 + 'vw';
-      span.style.top = Math.random() * 100 + 'vh'; // posição inicial aleatória em toda a altura
+      span.style.top = Math.random() * 100 + 'vh'; // posição inicial aleatória
       span.style.fontSize = (Math.random()*2 + 1) + 'em';
-      // Durations variados para efeito cascata
-      const fallDuration = 6 + Math.random() * 6; // 6 a 12s
-      const spinDuration = 4 + Math.random() * 6; // 4 a 10s
+      const fallDuration = 6 + Math.random() * 6;
+      const spinDuration = 4 + Math.random() * 6;
       span.style.animation = `fall ${fallDuration}s linear infinite, spin ${spinDuration}s linear infinite`;
       span.style.animationDelay = Math.random() * 10 + 's';
       bg.appendChild(span);
