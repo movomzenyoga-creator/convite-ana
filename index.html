@@ -22,7 +22,7 @@
       position: relative;
     }
 
-    /* Fundo com emojis espalhados */
+    /* Fundo com emojis caindo como confete */
     .emoji-background {
       position: fixed;
       top: 0;
@@ -37,13 +37,18 @@
       position: absolute;
       font-size: 2em;
       opacity: 0.8;
-      animation: float 6s linear infinite;
+      animation: fall 10s linear infinite, spin 6s linear infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-      100% { transform: translateY(0) rotate(0deg); }
+    @keyframes fall {
+      0% { transform: translateY(-50px); opacity: 0.8; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(100vh); opacity: 0.8; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Teias caindo */
@@ -55,11 +60,11 @@
       opacity: 0.3;
       top: -120px;
       border-radius: 5px;
-      animation: fall 6s linear infinite;
+      animation: fallWeb 6s linear infinite;
       z-index: 1;
     }
 
-    @keyframes fall {
+    @keyframes fallWeb {
       0% { transform: translateY(-120px) rotate(0deg); opacity: 0.3; }
       50% { transform: translateY(50vh) rotate(15deg); opacity: 0.5; }
       100% { transform: translateY(100vh) rotate(30deg); opacity: 0.3; }
@@ -130,26 +135,25 @@
       </p>
       <p>
         💰 <b>Valores:</b><br>
-        Segunda a quinta (após 18h): R$ 39,90<br>
-        Sextas, sábados, domingos e feriados (após 18h): R$ 54,90<br>
-        Crianças (5 a 10 anos): R$ 29,90<br>
-        Crianças (0 a 4 anos): Grátis
+        Jantar (rodízio de pizzas + buffet) custa R$ 49,90 de segunda a quinta<br>
+        Crianças de 5 a 10 anos: R$ 29,90 (preço especial para rodízio de pizza + buffet liberado)<br>
+        Crianças de 0 a 4 anos: Grátis
       </p>
       <a class="button" href="https://wa.me/5521983023504" target="_blank">Confirmar presença 🕸️</a>
     </div>
   </div>
 
   <script>
-    // Cria emojis espalhados aleatoriamente
-    const emojis = ['🕷️','🕸️','🏙️'];
+    // Cria emojis espalhados aleatoriamente como confete
+    const emojis = ['🕷️','🕸️','🏙️','🎉','🍕'];
     const bg = document.getElementById('emoji-bg');
     for(let i=0;i<150;i++){
       const span = document.createElement('span');
       span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
       span.style.left = Math.random() * 100 + 'vw';
-      span.style.top = Math.random() * 100 + 'vh';
-      span.style.animationDelay = (Math.random()*5)+'s';
-      span.style.fontSize = (Math.random()*2 + 1) + 'em'; // tamanhos variados
+      span.style.top = Math.random() * -100 + 'vh'; // começa fora da tela
+      span.style.animationDelay = (Math.random()*10)+'s';
+      span.style.fontSize = (Math.random()*2 + 1) + 'em';
       bg.appendChild(span);
     }
 
