@@ -13,6 +13,41 @@
       background: linear-gradient(#0b0c2a, #1a1b4b);
       color: white;
       overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff0000;
+      font-size: 3em;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .button {
+      display: inline-block;
+      background: red;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 1.2em;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(255,0,0,0.6);
+      transition: 0.3s;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background: #c20000;
+      box-shadow: 0 0 25px rgba(255,0,0,0.9);
+    }
+
+    .hidden {
+      display: none;
     }
 
     .city {
@@ -49,72 +84,52 @@
     .content {
       position: relative;
       text-align: center;
-      top: 200px;
+      top: 180px;
       padding: 20px;
       z-index: 2;
     }
-
-    h1 {
-      color: #ff0000;
-      font-size: 3em;
-      text-shadow: 2px 2px 8px black;
-    }
-
-    h2 {
-      color: #00aaff;
-      font-size: 2em;
-    }
-
-    p {
-      font-size: 1.2em;
-      line-height: 1.4;
-    }
-
-    .button {
-      display: inline-block;
-      background: red;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 12px;
-      font-size: 1.2em;
-      text-decoration: none;
-      box-shadow: 0 0 15px rgba(255,0,0,0.6);
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      background: #c20000;
-      box-shadow: 0 0 25px rgba(255,0,0,0.9);
-    }
-
-    audio { display: none; }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://www.televisiontunes.com/uploads/audio/Spiderman%20-%201967.mp3" type="audio/mpeg">
-  </audio>
-
-  <img class="spiderman" src="https://i.imgur.com/vlqQ2np.png" alt="Homem-Aranha">
-
-  <div class="content">
+  <div id="intro">
     <h1>🕸️ Convite Secreto da Ana Carolina</h1>
-    <h2>19 Anos 🎉</h2>
-    <p>
-      📅 <b>16 de dezembro de 2025</b><br>
-      🕖 <b>A partir das 19h</b><br>
-      📍 <b>Restaurante Fronteira – Outlet Premium</b>
-    </p>
-    <p>
-      💰 <b>Valores:</b><br>
-      Segunda a quinta (após 18h): R$ 39,90<br>
-      Sextas, sábados, domingos e feriados (após 18h): R$ 54,90<br>
-      Crianças (5 a 10 anos): R$ 29,90<br>
-      Crianças (0 a 4 anos): Grátis
-    </p>
-    <a class="button" href="https://wa.me/5521983023504" target="_blank">🕸️ Confirmar presença!</a>
+    <button class="button" onclick="abrirConvite()">Abrir convite 🕷️</button>
   </div>
 
-  <div class="city"></div>
+  <div id="convite" class="hidden">
+    <img class="spiderman" src="https://i.imgur.com/vlqQ2np.png" alt="Homem-Aranha">
+
+    <div class="content">
+      <h1>🎉 19 Anos da Ana Carolina 🕸️</h1>
+      <p>
+        📅 <b>16 de dezembro de 2025</b><br>
+        🕖 <b>A partir das 19h</b><br>
+        📍 <b>Restaurante Fronteira – Outlet Premium</b>
+      </p>
+      <p>
+        💰 <b>Valores:</b><br>
+        Segunda a quinta (após 18h): R$ 39,90<br>
+        Sextas, sábados, domingos e feriados (após 18h): R$ 54,90<br>
+        Crianças (5 a 10 anos): R$ 29,90<br>
+        Crianças (0 a 4 anos): Grátis
+      </p>
+      <a class="button" href="https://wa.me/5521983023504" target="_blank">Confirmar presença 🕸️</a>
+    </div>
+
+    <div class="city"></div>
+
+    <audio id="musica" loop>
+      <source src="https://www.televisiontunes.com/uploads/audio/Spiderman%20-%201967.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    function abrirConvite() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('convite').classList.remove('hidden');
+      const musica = document.getElementById('musica');
+      musica.play();
+    }
+  </script>
 </body>
 </html>
