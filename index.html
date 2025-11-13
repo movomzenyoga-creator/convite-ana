@@ -46,7 +46,9 @@
       box-shadow: 0 0 25px rgba(255,0,0,0.9);
     }
 
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
 
     .city {
       position: fixed;
@@ -54,11 +56,11 @@
       left: 0;
       width: 100%;
       height: 250px;
-      background: url('https://i.ibb.co/QrM8Tzd/city-skyline.png') repeat-x;
+      background: url('https://cdn.jsdelivr.net/gh/AnemyxAssets/spiderman-city/bg-city.png') repeat-x;
       background-size: cover;
       animation: moveCity 25s linear infinite;
       z-index: 1;
-      opacity: 0.9;
+      opacity: 0.8;
     }
 
     @keyframes moveCity {
@@ -104,7 +106,7 @@
 
   <!-- Convite -->
   <div id="convite" class="hidden">
-    <img class="spiderman" src="https://i.ibb.co/pf8x5bk/spiderman-swing.png" alt="Homem-Aranha">
+    <img class="spiderman" src="https://cdn.jsdelivr.net/gh/AnemyxAssets/spiderman-city/spiderman.png" alt="Homem-Aranha">
 
     <div class="content">
       <h1>🎉 19 Anos da Ana Carolina 🕸️</h1>
@@ -126,7 +128,7 @@
     <div class="city"></div>
 
     <audio id="musica" preload="auto" loop>
-      <source src="https://cdn.pixabay.com/download/audio/2023/05/04/audio_13f90a4f8f.mp3?filename=heroic-epic-trailer-146241.mp3" type="audio/mpeg">
+      <source src="https://cdn.jsdelivr.net/gh/AnemyxAssets/spiderman-city/heroic-theme.mp3" type="audio/mpeg">
     </audio>
   </div>
 
@@ -136,7 +138,7 @@
       document.getElementById('convite').classList.remove('hidden');
       const musica = document.getElementById('musica');
       musica.play().catch(() => {
-        alert("Clique novamente para iniciar o som 🎵");
+        alert("Clique novamente para ativar o som 🎵");
       });
     }
   </script>
