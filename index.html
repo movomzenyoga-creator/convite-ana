@@ -35,7 +35,7 @@
       pointer-events: none;
       z-index: 0;
       line-height: 1;
-      color: #ff0000; /* Vermelho clássico Homem-Aranha */
+      color: #ff0000; /* vermelho clássico Homem-Aranha */
     }
 
     .emoji-background span {
@@ -49,11 +49,34 @@
       100% { transform: translateY(0); }
     }
 
+    /* Teias caindo */
+    .web {
+      position: absolute;
+      width: 10px;
+      height: 100px;
+      background: white;
+      opacity: 0.3;
+      top: -120px;
+      border-radius: 5px;
+      animation: fall 6s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-120px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(50vh) rotate(15deg); opacity: 0.5; }
+      100% { transform: translateY(100vh) rotate(30deg); opacity: 0.3; }
+    }
+
     h1 {
-      color: #ff0000; /* Vermelho clássico Homem-Aranha */
+      color: #ff0000;
       font-size: 3em;
       text-shadow: 2px 2px 8px black;
-      z-index: 2;
+    }
+
+    #intro, #convite {
+      position: relative;
+      z-index: 2; /* texto acima do fundo e teias */
     }
 
     .content {
@@ -61,7 +84,7 @@
       top: 20px;
       padding: 20px;
       z-index: 2;
-      background-color: rgba(0,0,0,0.4); /* leve contraste para leitura */
+      background-color: rgba(0,0,0,0.4); /* contraste leve para leitura */
       border-radius: 15px;
     }
 
@@ -69,7 +92,7 @@
 
     .button {
       display: inline-block;
-      background: #ff0000; /* vermelho clássico */
+      background: #ff0000;
       color: white;
       padding: 15px 30px;
       border-radius: 12px;
@@ -79,8 +102,8 @@
       transition: 0.3s;
       cursor: pointer;
       margin-top: 20px;
-      z-index: 2;
       position: relative;
+      z-index: 2;
     }
 
     .button:hover {
@@ -128,6 +151,15 @@
       span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
       span.style.animationDelay = (Math.random()*5)+'s';
       bg.appendChild(span);
+    }
+
+    // Cria teias caindo
+    for(let i=0;i<15;i++){
+      const web = document.createElement('div');
+      web.classList.add('web');
+      web.style.left = Math.random() * 100 + 'vw';
+      web.style.animationDelay = (Math.random() * 6) + 's';
+      document.body.appendChild(web);
     }
 
     function abrirConvite() {
