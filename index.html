@@ -35,9 +35,8 @@
 
     .emoji-background span {
       position: absolute;
-      font-size: 2em;
       opacity: 0.8;
-      animation: fall 10s linear infinite, spin 6s linear infinite;
+      animation: fall linear infinite, spin linear infinite;
     }
 
     @keyframes fall {
@@ -144,16 +143,22 @@
   </div>
 
   <script>
-    // Cria emojis espalhados aleatoriamente como confete
+    // Cria emojis espalhados aleatoriamente como confete em efeito cascata
     const emojis = ['🕷️','🕸️','🏙️','🎉','🍕'];
     const bg = document.getElementById('emoji-bg');
-    for(let i=0;i<150;i++){
+    const totalEmojis = 150;
+
+    for(let i = 0; i < totalEmojis; i++){
       const span = document.createElement('span');
       span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
       span.style.left = Math.random() * 100 + 'vw';
-      span.style.top = Math.random() * -100 + 'vh'; // começa fora da tela
-      span.style.animationDelay = (Math.random()*10)+'s';
+      span.style.top = Math.random() * 100 + 'vh'; // posição inicial aleatória em toda a altura
       span.style.fontSize = (Math.random()*2 + 1) + 'em';
+      // Durations variados para efeito cascata
+      const fallDuration = 6 + Math.random() * 6; // 6 a 12s
+      const spinDuration = 4 + Math.random() * 6; // 4 a 10s
+      span.style.animation = `fall ${fallDuration}s linear infinite, spin ${spinDuration}s linear infinite`;
+      span.style.animationDelay = Math.random() * 10 + 's';
       bg.appendChild(span);
     }
 
